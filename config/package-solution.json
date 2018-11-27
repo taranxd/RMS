@@ -5,6 +5,7 @@
     "id": "129c8ccd-4dea-4b50-9a4d-96e04563ccd7",
     "version": "1.0.0.1",
     "includeClientSideAssets": true,
+    "skipFeatureDeployment": false,
     "webApiPermissionRequests": [{
         "resource": "Microsoft Graph",
         "scope": "User.Read.All"

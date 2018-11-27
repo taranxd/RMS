@@ -28,9 +28,6 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 				)
 				.get((error: any, apiResponse: any, rawResponse?: any) => {
 					const apiResults: MicrosoftGraph.Message[] = apiResponse.value;
-					console.log('Updated');
-					console.log('Mails', apiResults);
-					console.log(this.props.numberOfDocuments);
 					var count = 0;
 					apiResults.forEach((message) => {
 						this.props.graphClient

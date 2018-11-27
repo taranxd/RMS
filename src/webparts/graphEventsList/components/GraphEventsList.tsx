@@ -26,7 +26,6 @@ export default class GraphEventsList extends React.Component<IGraphEventsListPro
 			// .api('/me/events')
 			.get((error: any, eventsResponse: any, rawResponse?: any) => {
 				const calendarEvents: MicrosoftGraph.Event[] = eventsResponse.value;
-				console.log('calendarEvents', calendarEvents);
 				this.setState({ events: calendarEvents });
 			});
 	}
@@ -45,7 +44,6 @@ export default class GraphEventsList extends React.Component<IGraphEventsListPro
 				futureDate.toISOString();
 			this.props.graphClient.api(api).get((error: any, eventsResponse: any, rawResponse?: any) => {
 				const calendarEvents: MicrosoftGraph.Event[] = eventsResponse.value;
-				console.log('calendarEvents', calendarEvents);
 				this.setState({ events: calendarEvents });
 			});
 		}

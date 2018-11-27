@@ -29,8 +29,6 @@ export default class GraphPersona extends React.Component<IGraphPersonaProps, IG
 				//	.api(this.props.graphAPI + '&?$top=' + this.props.numberOfContacts)
 				.get((error: any, userResponse: any, rawResponse?: any) => {
 					const peopleResults: MicrosoftGraph.Person[] = userResponse.value;
-					console.log('peopleResults', peopleResults);
-					console.log(this.props.numberOfContacts);
 					this.setState({
 						people: peopleResults
 					});
@@ -64,11 +62,7 @@ export default class GraphPersona extends React.Component<IGraphPersonaProps, IG
 					)
 					//.api(this.props.graphAPI + '&?$top=' + this.props.numberOfContacts)
 					.get((error: any, userResponse: any, rawResponse?: any) => {
-						console.log(userResponse.value);
 						const peopleResults: MicrosoftGraph.Person[] = userResponse.value;
-						console.log('Property Updated');
-						console.log('peopleResults', peopleResults);
-						console.log(this.props.numberOfContacts);
 						this.setState({
 							people: peopleResults
 						});
