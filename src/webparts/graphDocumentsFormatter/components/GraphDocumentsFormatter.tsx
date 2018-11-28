@@ -35,12 +35,12 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 							.get()
 							.then((attachmentAPIResponse: any, attachmentResponse?: any) => {
 								var attachmentResults: MicrosoftGraph.FileAttachment[] = attachmentAPIResponse.value;
-								console.log('attachments', attachmentResults);
+								//console.log('attachments', attachmentResults);
 								for (var i = 0; i < attachmentResults.length; i++) {
 									if (typeof tempAttachments !== 'undefined') {
 										if (tempAttachments.length < this.props.numberOfDocuments) {
 											tempAttachments.push(attachmentResults[i]);
-											console.log('length', tempAttachments.length);
+											//console.log('length', tempAttachments.length);
 											this.setState({
 												Documents: tempAttachments
 											});
@@ -99,9 +99,9 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 					)
 					.get((error: any, apiResponse: any, rawResponse?: any) => {
 						const apiResults: MicrosoftGraph.Message[] = apiResponse.value;
-						console.log('Updated');
-						console.log('Mails', apiResults);
-						console.log(this.props.numberOfDocuments);
+						//console.log('Updated');
+						//console.log('Mails', apiResults);
+						//console.log(this.props.numberOfDocuments);
 						var count = 0;
 						apiResults.forEach((message) => {
 							this.props.graphClient
@@ -110,12 +110,12 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 								.then((attachmentAPIResponse: any, attachmentResponse?: any) => {
 									var attachmentResults: MicrosoftGraph.FileAttachment[] =
 										attachmentAPIResponse.value;
-									console.log('attachments', attachmentResults);
+									//console.log('attachments', attachmentResults);
 									for (var i = 0; i < attachmentResults.length; i++) {
 										if (typeof tempAttachments !== 'undefined') {
 											if (tempAttachments.length < this.props.numberOfDocuments) {
 												tempAttachments.push(attachmentResults[i]);
-												console.log('length', tempAttachments.length);
+												//console.log('length', tempAttachments.length);
 												this.setState({
 													Documents: tempAttachments
 												});
@@ -161,7 +161,7 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 		}
 	}
 	private _onRenderEventCell(item: MicrosoftGraph.FileAttachment, index: number | undefined): JSX.Element {
-		console.log(item);
+		//console.log(item);
 		return (
 			<div className="ms-Grid-col ms-sm4 ms-md4 ms-lg4">
 				<a
@@ -170,7 +170,7 @@ export default class GraphPersona extends React.Component<IGraphDocumentsFormatt
 					data-fileName={item.name}
 					style={{ 'text-decoration': 'none' }}
 					onClick={(e) => {
-						console.log(e.currentTarget.getAttribute('data-content'));
+						//console.log(e.currentTarget.getAttribute('data-content'));
 						const url = window.URL;
 						let decodedString = atob(e.currentTarget.getAttribute('data-content'));
 						let bytes = new Uint8Array(decodedString.length);
