@@ -9,7 +9,15 @@ import GraphPersona from '../components/GraphPersona';
 import { IGraphPersonaState } from '../components/IGraphPersonaState';
 import { IGraphPersonaProps } from '../components/IGraphPersonaProps';
 import { MSGraphClient } from '@microsoft/sp-http';
-configure({ adapter: new Adapter() });
+import 'office-ui-fabric-core/dist/css/fabric.min.css';
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
+import { Persona, PersonaSize } from 'office-ui-fabric-react/lib/components/Persona';
+import { List } from 'office-ui-fabric-react/lib/List';
+import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
+import { Log } from '@microsoft/sp-core-library';
+configure({
+	adapter: new Adapter()
+});
 
 describe('<GraphPersona />', () => {
 	const itemCount = 4;
@@ -37,16 +45,16 @@ describe('<GraphPersona />', () => {
 		expect(renderedElement.find('div')).to.be.exist;
 	});
 
-	it('<GraphPersona /> should render the description', () => {
-		expect(renderedElement.find('p.description').text()).to.be.equals(descTxt);
+	it('<GraphPersona /> should render the Focus Zone', () => {
+		expect(renderedElement.find('.ms-FocusZone').text()).to.be.equals(descTxt);
 	});
 
-	it('<GraphPersona /> should render an ul', () => {
-		expect(renderedElement.find('ul')).to.be.exist;
+	it('<GraphPersona /> should render an ms-Persona', () => {
+		expect(renderedElement.find('.ms-Persona')).to.be.exist;
 	});
 
 	it('<GraphPersona /> state results should not be null', () => {
-		expect(renderedElement.state('results')).to.not.be.null;
+		expect(renderedElement.state('people')).to.not.be.null;
 	});
 
 	it('<GraphPersona /> should call componentDidMount only once', () => {
@@ -54,7 +62,7 @@ describe('<GraphPersona />', () => {
 		expect(componentDidMountSpy.calledOnce).to.equal(true);
 	});
 
-	it('<GraphPersona /> should render an ul with 3 items (using the mock data)', (done) => {
+	it('<GraphPersona /> should render an ms-Persona with 3 items (using the mock data)', (done) => {
 		// New instance should be created for this test due to setTimeout
 		// If the global renderedElement used, the result of "ul li"" will be 10 instead of 3
 		// because the state changes to 10 in the last test and
@@ -65,7 +73,7 @@ describe('<GraphPersona />', () => {
 			// Trigger state update
 			renderedElement1.update();
 			expect(renderedElement1.state('people')).to.not.be.null;
-			expect(renderedElement1.find('ul li').length).to.be.equal(3);
+			expect(renderedElement1.find('.ms-Persona').length).to.be.equal(3);
 			done(); // done is required by mocha, otherwise the test will yield SUCCESS no matter of the expect cases
 		}, 1000);
 	});
@@ -88,6 +96,6 @@ describe('<GraphPersona />', () => {
 			}
 		});
 		expect(renderedElement.update().state('people')).to.not.be.null;
-		expect(renderedElement.update().find('ul li').length).to.be.equal(10);
+		expect(renderedElement.update().find('.ms-Persona').length).to.be.equal(10);
 	});
 });
